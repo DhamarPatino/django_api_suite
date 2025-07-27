@@ -29,7 +29,9 @@ class DemoRestApi(APIView):
 
       # Validación mínima
       if 'name' not in data or 'email' not in data:
-         return Response({'error': 'Faltan campos requeridos.'}, status=status.HTTP_400_BAD_REQUEST)
+         return Response({'error': 'Faltan campos requeridos.',
+                'message': 'Debe incluir los campos "name" y "email".'}, 
+                status=status.HTTP_400_BAD_REQUEST)
 
       data['id'] = str(uuid.uuid4())
       data['is_active'] = True
@@ -43,8 +45,10 @@ class DemoRestApiItem(APIView):
         index = next((i for i, item in enumerate(data_list) if item['id'] == item_id), None)
 
         if index is None:
-            return Response({'error': 'Elemento no encontrado.'}, status=status.HTTP_404_NOT_FOUND)
-
+            return Response({
+                'error': 'Elemento no encontrado.',
+                'message': f'No existe un elemento con id "{item_id}".'
+            }, status=status.HTTP_404_NOT_FOUND)
         if 'id' not in data or data['id'] != item_id:
             return Response({'error': 'El campo "id" es obligatorio y debe coincidir con el de la URL.'}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -61,8 +65,11 @@ class DemoRestApiItem(APIView):
     def patch(self, request, item_id):
         item = next((item for item in data_list if item['id'] == item_id), None)
         if item is None:
-            return Response({'error': 'Elemento no encontrado.'}, status=status.HTTP_404_NOT_FOUND)
-
+            return Response({
+                'error': 'Elemento no encontrado.',
+                'message': f'No se encontró un elemento con id "{item_id}".'
+            }, status=status.HTTP_404_NOT_FOUND)
+        
         for key in ['name', 'email', 'is_active']:
             if key in request.data:
                 item[key] = request.data[key]
@@ -72,7 +79,13 @@ class DemoRestApiItem(APIView):
     def delete(self, request, item_id):
         item = next((item for item in data_list if item['id'] == item_id), None)
         if item is None:
-            return Response({'error': 'Elemento no encontrado.'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({
+                'error': 'Elemento no encontrado.',
+                'message': f'No se pudo eliminar. El ID "{item_id}" no corresponde a ningún elemento.'
+            }, status=status.HTTP_404_NOT_FOUND)
 
         item['is_active'] = False
-        return Response({'message': 'Elemento eliminado lógicamente.'}, status=status.HTTP_200_OK)
+        return Response({
+            'message': 'Elemento eliminado lógicamente.',
+            'data': item
+        }, status=status.HTTP_200_OK)
