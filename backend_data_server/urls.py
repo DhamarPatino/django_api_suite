@@ -16,7 +16,7 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+
 from django.urls import path, include
 
 urlpatterns = [
@@ -25,3 +25,4 @@ urlpatterns = [
     path("demo/rest/api/", include("demo_rest_api.urls")),
     path("landing/api/", include("landing_api.urls")),
 ]
+

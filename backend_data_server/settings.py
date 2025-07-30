@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import firebase_admin
 from firebase_admin import credentials
+from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,10 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-%m#pxc2%n%cpj1^28(g!f_ev@3r^mhfriv6-m#tg_j!f4fd-k("
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['dalfonzo.pythonanywhere.com']
+
 
 
 # Application definition
@@ -45,6 +48,7 @@ INSTALLED_APPS = [
     "homepage",
     "demo_rest_api",
     "landing_api",
+    "homepage",
 ]
 
 MIDDLEWARE = [
@@ -128,6 +132,7 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = "assets/"
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
@@ -140,3 +145,4 @@ FIREBASE_CREDENTIALS_PATH = credentials.Certificate("secrets/landing-key.json")
 firebase_admin.initialize_app(FIREBASE_CREDENTIALS_PATH, {
    'databaseURL': 'https://landing-f9530-default-rtdb.firebaseio.com/'
 })
+
