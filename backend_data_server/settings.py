@@ -14,7 +14,6 @@ from pathlib import Path
 import os
 import firebase_admin
 from firebase_admin import credentials
-from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,7 +29,7 @@ SECRET_KEY = "django-insecure-%m#pxc2%n%cpj1^28(g!f_ev@3r^mhfriv6-m#tg_j!f4fd-k(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['dalfonzo.pythonanywhere.com']
+ALLOWED_HOSTS = ['Dhamar.pythonanywhere.com']
 
 
 
@@ -48,7 +47,6 @@ INSTALLED_APPS = [
     "homepage",
     "demo_rest_api",
     "landing_api",
-    "homepage",
 ]
 
 MIDDLEWARE = [
@@ -143,6 +141,6 @@ FIREBASE_CREDENTIALS_PATH = credentials.Certificate("secrets/landing-key.json")
 
 # Inicialice la conexión con el Realtime Database con la clave privada y la URL de referencia
 firebase_admin.initialize_app(FIREBASE_CREDENTIALS_PATH, {
-   'databaseURL': 'https://landing-f9530-default-rtdb.firebaseio.com/'
+   'databaseURL': 'https://landing-27-default-rtdb.firebaseio.com'
 })
 
