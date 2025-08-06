@@ -7,7 +7,7 @@ from datetime import datetime
 
 class LandingAPI(APIView):
     name = "Landing API"
-    collection_name = "votes"  # Nombre de la colección en Realtime Database
+    collection_name = "citas"  # Nombre de la colección en Realtime Database
     def get(self, request):
         ref = db.reference(f'{self.collection_name}')
         data = ref.get()
