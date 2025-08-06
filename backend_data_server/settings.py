@@ -29,7 +29,7 @@ SECRET_KEY = "django-insecure-%m#pxc2%n%cpj1^28(g!f_ev@3r^mhfriv6-m#tg_j!f4fd-k(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['Dhamar.pythonanywhere.com']
+ALLOWED_HOSTS = ['Dhamar.pythonanywhere.com', 'localhost']
 
 
 
